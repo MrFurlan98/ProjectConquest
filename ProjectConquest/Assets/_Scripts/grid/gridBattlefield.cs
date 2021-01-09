@@ -13,9 +13,9 @@ public class gridBattlefield : MonoBehaviour
 
     void LateUpdate()
     {
-        finalPos.x = Mathf.Floor( target.transform.position.x / cellSize ) * cellSize + offset;
+        finalPos.x = Mathf.Floor(target.transform.position.x / cellSize) * cellSize;
         finalPos.y = this.transform.position.y + offset;
-        finalPos.z = Mathf.Floor( target.transform.position.z / cellSize ) * cellSize + offset;
+        finalPos.z = Mathf.Floor(target.transform.position.z / cellSize) * cellSize;
 
         monster.transform.position = finalPos;
     }

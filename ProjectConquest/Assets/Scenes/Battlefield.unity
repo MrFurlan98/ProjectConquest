@@ -339,7 +339,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 23.254772
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -365,7 +365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.17639756, y: 0, z: 0, w: 0.9843191}
-  m_LocalPosition: {x: 9.92, y: 8.1, z: -9.36}
+  m_LocalPosition: {x: 9, y: 23.3, z: -57.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -377,9 +377,41 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1047190829862246639}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1023655062
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023655060}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1023655063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023655060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfbc9d4617d84c34f8be8b7ae90c4606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monPos: {fileID: 1306684509}
 --- !u!1 &1306684508 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1047190828958495923, guid: 66c8376ff9962424884079b0101ca7ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1047190829862246639}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1306684509 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1047190828958495887, guid: 66c8376ff9962424884079b0101ca7ac,
     type: 3}
   m_PrefabInstance: {fileID: 1047190829862246639}
   m_PrefabAsset: {fileID: 0}
@@ -395,20 +427,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 111458941555344957, guid: e8cd6f6f07d178a4594dfd4bda09592c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 111458941555344958, guid: e8cd6f6f07d178a4594dfd4bda09592c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 111458941555344958, guid: e8cd6f6f07d178a4594dfd4bda09592c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 111458941555344958, guid: e8cd6f6f07d178a4594dfd4bda09592c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 111458941555344958, guid: e8cd6f6f07d178a4594dfd4bda09592c,
         type: 3}
@@ -460,6 +497,11 @@ PrefabInstance:
       propertyPath: monster
       value: 
       objectReference: {fileID: 1306684508}
+    - target: {fileID: 111458942819101648, guid: e8cd6f6f07d178a4594dfd4bda09592c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8cd6f6f07d178a4594dfd4bda09592c, type: 3}
 --- !u!1001 &1047190829862246639
@@ -472,17 +514,17 @@ PrefabInstance:
     - target: {fileID: 1047190829144040352, guid: 66c8376ff9962424884079b0101ca7ac,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1047190829144040352, guid: 66c8376ff9962424884079b0101ca7ac,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1047190829144040352, guid: 66c8376ff9962424884079b0101ca7ac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1047190829144040352, guid: 66c8376ff9962424884079b0101ca7ac,
         type: 3}
@@ -529,5 +571,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterMon
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1047190828958495922, guid: 66c8376ff9962424884079b0101ca7ac, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66c8376ff9962424884079b0101ca7ac, type: 3}
