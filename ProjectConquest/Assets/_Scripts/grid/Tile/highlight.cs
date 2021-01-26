@@ -7,10 +7,6 @@ public class highlight : MonoBehaviour
     public int colunm;
     public int row;
 
-    private void Start()
-    {
-        
-    }
     public void SetPosition()
     {
         colunm = (int)transform.position.z;
