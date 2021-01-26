@@ -4,86 +4,35 @@ using UnityEngine;
 
 public class dragMonster : MonoBehaviour
 {
-    private Vector3 mOffset;
-
     public Transform monPos;
     public Transform miragePos;
     public Transform cameraRef;
 
-    public GameObject m_grid;
+    Vector3 finalPos;
 
-    private highlight[,] m_gridhighlights;
-
-    public int range;
-    public int initialPosX;
-    public int initialPosZ;
 
     private void OnMouseDown()
     {
-        m_gridhighlights = m_grid.GetComponent<createPath>().m_highlightPos;
-        mOffset = gameObject.transform.position - GetMouseWorldPos();
-        initialPosX = (int)monPos.position.x;
-        initialPosZ = (int)monPos.position.z;
         cameraRef.SetParent(miragePos);
-        ShowPath(true);
     }
 
-    private Vector3 GetMouseWorldPos()
+    public bool DragToPosition(float cellSize, float offset)
     {
-        Vector3 mousePoint = Input.mousePosition;
+        finalPos.x = Mathf.Floor(miragePos.transform.position.x / cellSize) * cellSize;
+        finalPos.y = 0;
+        finalPos.z = Mathf.Floor(miragePos.transform.position.z / cellSize) * cellSize;
 
-        Ray rayPos = Camera.main.ScreenPointToRay(mousePoint);
+        transform.position = finalPos;
+        monPos.position = Vector3.Lerp(monPos.position, finalPos, offset);
+        monPos.rotation = Quaternion.Lerp(monPos.rotation, miragePos.rotation, offset);
 
-        Physics.Raycast(rayPos, out RaycastHit hit, LayerMask.GetMask("Floor"));
-        if (hit.collider)
+        cameraRef.SetParent(null);
+
+        if (Vector3.Distance(monPos.position, finalPos) < 0.05)
         {
-            return hit.point;
-        }
-
-        return Vector3.positiveInfinity;
-    }
-
-    public void ShowPath(bool show)
-    {
-        for (int i = initialPosX - range; i <= initialPosX + range; i++)
-        {
-            for(int j = initialPosZ - range; j <= initialPosZ + range; j++)
-            {
-                if(IsInRange(i,j))
-                {
-                    m_gridhighlights[i, j].gameObject.SetActive(show);
-                }   
-            }
-        }
-    }
-
-    private void OnMouseDrag()
-    {
-        if(GetMouseWorldPos() != Vector3.positiveInfinity)
-        {
-            Vector3 tPos = GetMouseWorldPos() + mOffset;
-            if(IsInRange((int)tPos.x,(int)tPos.z)){
-                transform.position = GetMouseWorldPos() + mOffset;
-                miragePos.position = new Vector3(Mathf.Floor(transform.position.x / 1) * 1, 0, Mathf.Floor(transform.position.z / 1) * 1);
-            }
-            
-        }
-        
-    }
-
-    private bool IsInRange(int x, int z)
-    {
-        if (Mathf.Abs(initialPosX - x) + Mathf.Abs(initialPosZ - z) <= range)
-        {
+            monPos.position = finalPos;
             return true;
         }
         return false;
-    }
-
-    private void OnMouseUp()
-    {    
-        gameObject.transform.position = monPos.position;
-        cameraRef.SetParent(null);
-        ShowPath(false);
     }
 }
