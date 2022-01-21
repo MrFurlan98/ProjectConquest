@@ -13,24 +13,24 @@ public class dragMonster : MonoBehaviour
 
     private void OnMouseDown()
     {
-        cameraRef.SetParent(miragePos);
+        cameraRef.SetParent(monPos);
     }
 
     public bool DragToPosition(float cellSize, float offset)
     {
         finalPos.x = Mathf.Floor(miragePos.transform.position.x / cellSize) * cellSize;
-        finalPos.y = 0;
+        finalPos.y = 0.5f;
         finalPos.z = Mathf.Floor(miragePos.transform.position.z / cellSize) * cellSize;
 
         transform.position = finalPos;
         monPos.position = Vector3.Lerp(monPos.position, finalPos, offset);
         monPos.rotation = Quaternion.Lerp(monPos.rotation, miragePos.rotation, offset);
 
-        cameraRef.SetParent(null);
 
         if (Vector3.Distance(monPos.position, finalPos) < 0.05)
         {
             monPos.position = finalPos;
+            cameraRef.SetParent(null);
             return true;
         }
         return false;

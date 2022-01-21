@@ -76,7 +76,7 @@ public class gameController : MonoBehaviour
             {
                 if (IsInRange(i, j))
                 {
-                    board.GetComponentInChildren<createPath>().m_highlightPos[i, j].gameObject.SetActive(show);
+                    board.GetComponent<Board>().Tiles[i, j].transform.GetChild(0).gameObject.SetActive(show);
                 }
             }
         }
@@ -84,8 +84,9 @@ public class gameController : MonoBehaviour
 
     private bool IsInRange(int x, int z)
     {
-        int fieldSize = board.GetComponentInChildren<createPath>().fieldSize;
-        if (x >= 0 && x < fieldSize && z >= 0 && z < fieldSize)
+        int fieldSizeX = board.GetComponent<Board>().Tiles.GetLength(0);
+        int fieldSizeY = board.GetComponent<Board>().Tiles.GetLength(1);
+        if (x >= 0 && x < fieldSizeX && z >= 0 && z < fieldSizeY)
         {
             if (Mathf.Abs(initialPosX - x) + Mathf.Abs(initialPosZ - z) <= range)
             {
@@ -115,7 +116,7 @@ public class gameController : MonoBehaviour
                 if (IsInRange((int)Mathf.Floor(tPos.x), (int)Mathf.Floor(tPos.z)))
                 {
                     target.position = GetMouseWorldPos() + mOffset;
-                    mirage.position = new Vector3(Mathf.Floor(target.position.x / 1) * 1, 0, Mathf.Floor(target.position.z / 1) * 1);
+                    mirage.position = new Vector3(Mathf.Floor(target.position.x / 1) * 1, 0.5f, Mathf.Floor(target.position.z / 1) * 1);
                 }
 
             }

@@ -43,5 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce6397026722bf468b6cd617d250083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMonster: {fileID: 0}
-  Board: {fileID: 0}
+  board: {fileID: 0}
